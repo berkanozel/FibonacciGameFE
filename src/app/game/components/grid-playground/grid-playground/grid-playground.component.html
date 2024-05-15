@@ -1,0 +1,56 @@
+  <div class="container card card-body mt-4" style="align-items: center; max-width: 100%">
+    <div>
+    <span *ngFor="let row of playground.boxes; let x = index">
+        <span *ngFor="let item of row; let y = index">
+            <button class="btn btn-outline-dark dynamic-button"
+                    style="font-size: 70%; font-weight: bold;"
+                    [class.blink-yellow]="isBlinkYellow(x, y)"
+                    [class.blink-green]="item.isFibonacci"
+                    (click)="pressed(x,y)">{{item.value}}</button>
+        </span>
+        <ng-container *ngIf="x < playground.boxes.length - 1"><br></ng-container>
+    </span>
+    </div>
+    <div>
+      <button style="float: left" class="mt-4 btn btn-primary btn-rounded btn-block ibox-content"
+              (click)="returnSettings({content : returnPagePopUp})">Return
+      </button>
+      <button style="float: right" class="mt-4 m-2 btn btn-primary btn-rounded btn-block ibox-content"
+              (click)="resetGame({content : resetGamePopUp})">Reset
+      </button>
+    </div>
+  </div>
+
+
+
+<ng-template #returnPagePopUp let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Return Settings</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>You will lose your progress and return to the game setup screen.</p>
+    <br>
+    <p>Do you confirm?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-rounded btn-block" (click)="confirmToReturn()">Confirm</button>
+    <button type="button" class="btn btn-outline-dark" (click)="closePopUp()">Cancel</button>
+  </div>
+</ng-template>
+
+<ng-template #resetGamePopUp let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="resetGamePopUp-basic-title">Return Settings</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>You will lose your progress and reset the game</p>
+    <br>
+    <p>Do you confirm?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-rounded btn-block" (click)="confirmReset()">Confirm</button>
+    <button type="button" class="btn btn-outline-dark" (click)="closePopUp()">Cancel</button>
+  </div>
+</ng-template>

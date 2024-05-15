@@ -1,0 +1,36 @@
+<div class="container card card-body mt-4 col-3 border-1 border-dark" style="align-items: center">
+  <h1 style="color: blue">Fibonacci Game</h1>
+  <div class="col mt-2">
+    <span>Please enter grid size: </span>
+    <input id="gm-no-of-lines"
+           name="numberOfLines"
+           required
+           type="number"
+           class="form-control mt-1"
+           [(ngModel)]="numberOfGridSize"/>
+  </div>
+  <div>
+    <button style="float: right" class="mt-4 btn btn-primary btn-rounded btn-block ibox-content" (click)="openStartGameModal({content : gameStartPopUp})">Start</button>
+  </div>
+</div>
+
+
+  <ng-template #gameStartPopUp let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Game Information</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p>The objective of the game is to create <b>Fibonacci</b> numbers. <br>
+        - When you click on any square on the screen, all squares in the same row and column will be incremented by 1.
+        <br>
+        - If you obtain five consecutive <b>Fibonacci</b> numbers, the corresponding area will be reset.
+        <br><br>
+        Your game will start with a <b>{{numberOfGridSize}}x{{numberOfGridSize}}</b> grid.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary btn-rounded btn-block" (click)="startGame()">Start</button>
+      <button type="button" class="btn btn-outline-dark" (click)="closePopUp()">Close</button>
+    </div>
+  </ng-template>

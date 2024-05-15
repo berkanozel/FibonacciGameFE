@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FibonacciGameApplication';
+  openGridPlayGround: boolean = false;
+
+  gameStartEmmited($event: any) {
+      this.openGridPlayGround = $event;
+  }
+
+  returnGridMakerEmmiter($event: any) {
+    this.openGridPlayGround = $event;
+  }
 }
